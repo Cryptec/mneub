@@ -57,19 +57,56 @@
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
   margin: 0 0 1.5rem;
-  background: linear-gradient(90deg, var(--color-text), var(--color-text-secondary));
+  color: var(--color-text);
+}
+
+/* Base highlight style */
+.hero-title .highlight {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  padding: 0 2px;
+  color: #2563eb; /* Fallback color for older browsers */
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 0 transparent;
+}
+
+/* Dark mode highlight */
+[data-theme="dark"] .hero-title .highlight {
+  color: #60a5fa; /* Fallback color for older browsers */
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.hero-title .highlight {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  display: inline-block;
+/* Fix for Safari and older browsers */
+@supports not (background-clip: text) {
+  .hero-title .highlight {
+    background: none !important;
+    color: #2563eb !important;
+    -webkit-text-fill-color: #2563eb !important;
+  }
+  
+  [data-theme="dark"] .hero-title .highlight {
+    color: #a78bfa !important;
+    -webkit-text-fill-color: #a78bfa !important;
+  }
+}
+
+/* Additional fix for Firefox */
+@-moz-document url-prefix() {
+  .hero-title .highlight {
+    background: none !important;
+    color: #2563eb !important;
+  }
+  
+  [data-theme="dark"] .hero-title .highlight {
+    color: #a78bfa !important;
+  }
 }
 
 .hero-title .highlight::after {
@@ -79,11 +116,21 @@
   left: 0;
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent));
-  opacity: 0.3;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  opacity: 0.2;
   z-index: -1;
   border-radius: 4px;
   transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .hero-title .highlight::after {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  opacity: 0.3;
+}
+
+.hero-title:hover .highlight::after {
+  height: 12px;
+  opacity: 0.4;
 }
 
 .hero-title:hover .highlight::after {

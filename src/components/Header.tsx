@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 import './Header.css';
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  // Initialize theme from localStorage or system preference
+  // Theme-Initialisierung
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -18,7 +18,7 @@ const Header = () => {
     }
   }, []);
 
-  // Toggle dark mode
+  // Dark Mode Toggle
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
@@ -32,9 +32,10 @@ const Header = () => {
     }
   };
 
+  // Scroll-Effekt
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
+      const isScrolled = window.scrollY > 20;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
@@ -44,6 +45,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
+  // Mobile Menü Funktionen
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -52,7 +54,7 @@ const Header = () => {
     setMobileMenuOpen(false);
   };
 
-  // Close mobile menu when clicking on the overlay
+  // Schließe Menü bei Klick außerhalb
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -65,7 +67,7 @@ const Header = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [mobileMenuOpen]);
 
-  // Close mobile menu when pressing Escape key
+  // Schließe Menü bei Escape-Taste
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -77,19 +79,19 @@ const Header = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [mobileMenuOpen]);
 
-  // Prevent body scroll when mobile menu is open
+  // Verhindere Scrollen, wenn das Mobile Menü geöffnet ist
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [mobileMenuOpen]);
 
+  // Navigationslinks
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'Über mich' },
@@ -98,64 +100,47 @@ const Header = () => {
   ];
 
   return (
-    <>
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="header-content">
-          <a href="#home" className="logo" onClick={closeMobileMenu} aria-label="Zur Startseite">
-            <span className="logo-text">MN</span>
-          </a>
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${darkMode ? 'dark' : ''}`}>
+      <div className="header-container">
+        <a href="#home" className="logo" onClick={closeMobileMenu}>
+          <span className="logo-text">MN</span>
+        </a>
+        
+        <nav className={`nav ${mobileMenuOpen ? 'active' : ''}`}>
+          <ul>
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a 
+                  href={`#${link.id}`} 
+                  onClick={closeMobileMenu}
+                  className={typeof window !== 'undefined' && window.location.hash === `#${link.id}` ? 'active' : ''}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
           
           <button 
-            className={`hamburger ${mobileMenuOpen ? 'active' : ''}`} 
-            onClick={toggleMobileMenu}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="main-navigation"
-            aria-label={mobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+            className="theme-toggle"
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? 'Zum Hellmodus wechseln' : 'Zum Dunkelmodus wechseln'}
+            aria-pressed={darkMode}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            {darkMode ? <FiSun /> : <FiMoon />}
           </button>
-          
-          <nav 
-            id="main-navigation"
-            className={`nav ${mobileMenuOpen ? 'active' : ''}`}
-            aria-label="Hauptnavigation"
-          >
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a 
-                    href={`#${link.id}`} 
-                    onClick={closeMobileMenu}
-                    className={typeof window !== 'undefined' && window.location.hash === `#${link.id}` ? 'active' : ''}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            
-            <button 
-              className="theme-toggle" 
-              onClick={toggleDarkMode}
-              aria-label={darkMode ? 'Zum Hellmodus wechseln' : 'Zum Dunkelmodus wechseln'}
-              aria-pressed={darkMode}
-            >
-              {darkMode ? <FiSun /> : <FiMoon />}
-            </button>
-          </nav>
-        </div>
-      </header>
-      
-      {/* Mobile menu overlay */}
-      <div 
-        className={`mobile-menu-overlay ${mobileMenuOpen ? 'active' : ''}`}
-        onClick={closeMobileMenu}
-        role="presentation"
-        aria-hidden={!mobileMenuOpen}
-      />
-    </>
+        </nav>
+        
+        <button 
+          className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-expanded={mobileMenuOpen}
+          aria-label={mobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
+        >
+          {mobileMenuOpen ? <FiX /> : <FiMenu />}
+        </button>
+      </div>
+    </header>
   );
 };
 

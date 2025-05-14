@@ -1,6 +1,7 @@
 .projects {
   padding: 8rem 0;
-  background-color: #fff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .filters {
@@ -13,8 +14,8 @@
 
 .filter-btn {
   padding: 0.5rem 1.5rem;
-  background: none;
-  border: 1px solid #ddd;
+  background: var(--btn-bg);
+  border: 1px solid var(--border-color);
   border-radius: 30px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -22,12 +23,25 @@
   color: var(--text-color);
 }
 
-.filter-btn:hover,
+.filter-btn:hover {
+  border-color: var(--accent-color);
+}
+
 .filter-btn.active {
   background-color: var(--accent-color);
   color: white;
   border-color: var(--accent-color);
   transform: translateY(-2px);
+}
+
+/* Ensure contrast in dark mode */
+[data-theme="dark"] .project-details h3 {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .project-details p {
+  color: var(--text-secondary) !important;
+  opacity: 0.9;
 }
 
 .projects-grid {
@@ -38,18 +52,20 @@
 }
 
 .project-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px var(--shadow-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--border-color);
 }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px var(--shadow-hover);
+  border-color: var(--accent-color);
 }
 
 .project-image {
@@ -125,6 +141,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
 .project-tag {
@@ -133,6 +151,27 @@
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   color: var(--text-light);
+}
+
+.project-details {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.project-details h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+  color: var(--heading-color);
+}
+
+.project-details p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {
