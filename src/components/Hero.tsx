@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiArrowRight } from 'react-icons/fi';
+import { FiInstagram, FiFacebook, FiMail, FiArrowRight, FiImage } from 'react-icons/fi';
 import Button from './Button';
 import './Hero.css';
+import BannerImage from '../assets/hero-banner.jpg'; // Make sure to add your banner image to this path
 
 const Hero = () => {
   const controls = useAnimation();
@@ -41,6 +42,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
+      <div className="hero-banner">
+        <img src={BannerImage} alt="" aria-hidden="true" />
+      </div>
       <div className="hero-pattern" aria-hidden="true"></div>
       <div className="container">
         <motion.div 
@@ -54,29 +58,30 @@ const Hero = () => {
             className="hero-greeting"
             variants={itemVariants}
           >
-            Hallo, ich bin
+            Willkommen in meiner
           </motion.span>
           
           <motion.h1 
             className="hero-title"
             variants={itemVariants}
           >
-            <span className="highlight">Martin Neubauer</span>
+            <span className="highlight">Schreinerei</span>
           </motion.h1>
           
           <motion.h2 
             className="hero-subtitle"
             variants={itemVariants}
           >
-            <span className="typing-text">Softwareentwickler & Technologie-Enthusiast</span>
+            <span className="typing-text">Handgefertigte Möbel & individuelle Holzarbeiten</span>
           </motion.h2>
           
           <motion.p 
             className="hero-description"
             variants={itemVariants}
           >
-            Ich erstelle moderne Webanwendungen mit Fokus auf Benutzererlebnis und Performance. 
-            Spezialisiert auf React, TypeScript und moderne Web-Technologien.
+            Als leidenschaftlicher Schreiner mit jahrelanger Erfahrung fertige ich einzigartige Möbelstücke 
+            und Holzarbeiten in höchster Qualität. Jedes Stück wird mit Liebe zum Detail und unter Verwendung 
+            ausgewählter Hölzer in meiner Werkstatt gefertigt.
           </motion.p>
           
           <motion.div 
@@ -88,13 +93,13 @@ const Hero = () => {
               href="#contact"
               endIcon={<FiArrowRight />}
             >
-              Kontakt aufnehmen
+Anfrage senden
             </Button>
             <Button 
               variant="outline" 
               href="#projects"
             >
-              Meine Projekte
+Meine Arbeiten
             </Button>
           </motion.div>
           
@@ -102,46 +107,19 @@ const Hero = () => {
             className="social-links"
             variants={itemVariants}
           >
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <FiGithub />
+            <a href="https://www.instagram.com/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+              <FiInstagram />
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FiLinkedin />
+            <a href="https://www.pinterest.de/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="Bildergalerie" title="Bildergalerie">
+              <FiImage />
             </a>
-            <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <FiTwitter />
+            <a href="https://www.facebook.com/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+              <FiFacebook />
             </a>
-            <a href="mailto:your.email@example.com" aria-label="Email">
+            <a href="mailto:ihre.email@beispiel.com" aria-label="Email" title="Email">
               <FiMail />
             </a>
           </motion.div>
-        </motion.div>
-        
-        <motion.div 
-          className="hero-image"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1,
-            transition: { 
-              delay: 0.5, 
-              type: 'spring', 
-              stiffness: 100,
-              damping: 15,
-            } 
-          }}
-        >
-          <div className="image-container">
-            <div className="profile-image">
-              {/* Replace with your image */}
-              <div className="placeholder-text">
-                <span>Ihr Bild hier</span>
-              </div>
-            </div>
-            <div className="floating-shape shape-1"></div>
-            <div className="floating-shape shape-2"></div>
-            <div className="floating-shape shape-3"></div>
-          </div>
         </motion.div>
       </div>
       
