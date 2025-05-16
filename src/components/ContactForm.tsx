@@ -8,6 +8,7 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
+
   const [status, setStatus] = useState<{
     type: 'idle' | 'success' | 'error';
     message: string;

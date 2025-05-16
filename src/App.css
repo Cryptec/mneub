@@ -70,16 +70,11 @@ main {
   padding-top: 80px; /* Account for fixed header */
 }
 
-.container {
+.main-content {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-}
-
-section {
-  padding: 6rem 0;
-  position: relative;
 }
 
 /* Typography */
@@ -226,6 +221,12 @@ button-outline:hover, .btn-outline:hover {
 section {
   position: relative;
   overflow: hidden;
+}
+
+.contact-section {
+  background-color: var(--background-secondary);
+  padding: 4rem 0;
+  margin-bottom: 0;
 }
 
 .section-title {

@@ -89,7 +89,9 @@ function App() {
               <Hero />
               <About />
               <Projects />
-              <ContactForm />
+              <div className="contact-section">
+                <ContactForm />
+              </div>
             </main>
           } />
           <Route path="/impressum" element={<Impressum />} />
