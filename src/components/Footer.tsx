@@ -29,7 +29,6 @@ const Footer = () => {
           <div className="footer-right">
             <nav className="footer-nav">
               <Link to="/impressum" className="footer-link">Impressum</Link>
-              <span className="separator">|</span>
               <Link to="/datenschutz" className="footer-link">Datenschutz</Link>
             </nav>
           </div>
