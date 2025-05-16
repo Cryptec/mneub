@@ -1,0 +1,42 @@
+/* Impressum Page Styles */
+.impressum {
+  padding: 6rem 0;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.impressum h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  color: var(--primary);
+}
+
+.impressum-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.impressum-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.5rem;
+  color: var(--primary-dark);
+}
+
+.impressum-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .impressum h1 {
+    font-size: 2.5rem;
+  }
+  
+  .impressum-content h2 {
+    font-size: 1.75rem;
+  }
+}

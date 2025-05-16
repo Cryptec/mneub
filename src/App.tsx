@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import Impressum from './components/Impressum';
 import './App.css';
 
 function App() {
@@ -27,21 +29,73 @@ function App() {
       }
     };
 
+    // Handle hash changes
+    const handleHashChange = () => {
+      const id = window.location.hash;
+      if (id && id !== '#') {
+        const element = document.querySelector(id);
+        if (element) {
+          window.scrollTo({
+            top: element.getBoundingClientRect().top + window.pageYOffset - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    // Handle page transitions
+    const handlePageTransition = () => {
+      // Scroll to top when navigating to a new page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initial scroll if hash exists
+    const handleInitialScroll = () => {
+      const id = window.location.hash;
+      if (id && id !== '#') {
+        const element = document.querySelector(id);
+        if (element) {
+          window.scrollTo({
+            top: element.getBoundingClientRect().top + window.pageYOffset - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    // Initial scroll when component mounts
+    handleInitialScroll();
+
+
+
     document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePageTransition);
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePageTransition);
+    };
   }, []);
 
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <ContactForm />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <Routes>
+          <Route path="/" element={
+            <main>
+              <Hero />
+              <About />
+              <Projects />
+              <ContactForm />
+            </main>
+          } />
+          <Route path="/impressum" element={<Impressum />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

@@ -1,11 +1,25 @@
 import { useState, useEffect } from 'react';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const location = useLocation();
+
+  const handleScrollToSection = (id: string) => {
+    const element = document.querySelector(`#${id}`);
+    if (element) {
+      window.scrollTo({
+        top: element.getBoundingClientRect().top + window.pageYOffset - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+
 
   // Theme-Initialisierung
   useEffect(() => {
@@ -102,21 +116,27 @@ const Header = () => {
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''} ${darkMode ? 'dark' : ''}`}>
       <div className="header-container">
-        <a href="#home" className="logo" onClick={closeMobileMenu}>
+        <Link to="/" className="logo" onClick={closeMobileMenu}>
           <span className="logo-text">MN</span>
-        </a>
+        </Link>
         
         <nav className={`nav ${mobileMenuOpen ? 'active' : ''}`}>
           <ul>
             {navLinks.map((link) => (
               <li key={link.id}>
-                <a 
-                  href={`#${link.id}`} 
-                  onClick={closeMobileMenu}
+                <Link 
+                  to={location.pathname === '/' ? `#${link.id}` : '/'}
+                  onClick={(e) => {
+                    closeMobileMenu();
+                    if (location.pathname === '/') {
+                      e.preventDefault();
+                      handleScrollToSection(link.id);
+                    }
+                  }}
                   className={typeof window !== 'undefined' && window.location.hash === `#${link.id}` ? 'active' : ''}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
