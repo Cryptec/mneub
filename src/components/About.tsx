@@ -1,11 +1,6 @@
 import './About.css';
 
 const About = () => {
-  const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML5', 'CSS3',
-    'Git', 'Responsive Design', 'UI/UX', 'Python', 'SQL', 'Docker'
-  ];
-
   return (
     <section id="about" className="about">
       <div className="container">
@@ -13,29 +8,20 @@ const About = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Ich bin ein leidenschaftlicher Softwareentwickler mit Fokus auf moderne Webtechnologien. 
-              Mit meiner Erfahrung in der Entwicklung benutzerzentrierter Anwendungen strebe ich danach, 
-              intuitive und effiziente Lösungen für komplexe Probleme zu schaffen.
+              Als passionierter Hobby-Schreiner mit Gesellenbrief widme ich mich mit großer Begeisterung der Holzarbeit. 
+              Mit meiner Erfahrung in der traditionellen Schreinerei und modernen Techniken schaffe ich 
+              einzigartige Möbelstücke und individuelle Holzarbeiten.
             </p>
             <p>
-              Meine Reise in der Softwareentwicklung begann vor mehreren Jahren und seitdem habe ich 
-              kontinuierlich meine Fähigkeiten erweitert, um mit den neuesten Technologien und Best 
-              Practices Schritt zu halten.
+              Meine Leidenschaft für das Handwerk begann vor vielen Jahren und seitdem habe ich 
+              kontinuierlich meine Fähigkeiten erweitert. Jedes Möbelstück wird mit Sorgfalt und 
+              höchstem Qualitätsanspruch in meiner Werkstatt gefertigt.
             </p>
             <p>
-              Wenn ich nicht gerade Code schreibe, verbringe ich gerne Zeit damit, neue Technologien 
-              zu lernen, an Open-Source-Projekten zu arbeiten oder mich mit Gleichgesinnten auszutauschen.
+              Wenn ich nicht gerade in der Werkstatt bin, verbringe ich gerne Zeit damit, neue 
+              Techniken zu erlernen, mich mit anderen Handwerkern auszutauschen oder an Projekten 
+              für Freunde und Familie zu arbeiten.
             </p>
-          </div>
-          <div className="skills">
-            <h3>Meine Fähigkeiten</h3>
-            <div className="skills-container">
-              {skills.map((skill, index) => (
-                <div key={index} className="skill-tag">
-                  {skill}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

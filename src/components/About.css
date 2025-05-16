@@ -25,44 +25,8 @@
 
 /* Ensure text is visible in light mode */
 :root:not([data-theme="dark"]) .about-text p,
-:root:not([data-theme="dark"]) .about-text,
-:root:not([data-theme="dark"]) .skills h3 {
+:root:not([data-theme="dark"]) .about-text {
   color: #2d3748 !important; /* Dark gray for better contrast in light mode */
-}
-
-.skills {
-  flex: 1;
-}
-
-.skills h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-}
-
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.skill-tag {
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  padding: 0.5rem 1.2rem;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  box-shadow: 0 2px 10px var(--shadow-color);
-  transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
-}
-
-.skill-tag:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px var(--shadow-hover);
-  border-color: var(--accent-color);
-  color: var(--accent-color);
 }
 
 @media (max-width: 992px) {
