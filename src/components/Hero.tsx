@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { FiInstagram, FiFacebook, FiMail, FiArrowRight, FiImage } from 'react-icons/fi';
+import { FiInstagram, FiLinkedin, FiMail, FiArrowRight, FiImage } from 'react-icons/fi';
 import Button from './Button';
 import './Hero.css';
 import BannerImage from '../assets/hero-banner.jpg'; // Make sure to add your banner image to this path
@@ -113,8 +113,8 @@ Meine Arbeiten
             <a href="https://www.pinterest.de/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="Bildergalerie" title="Bildergalerie">
               <FiImage />
             </a>
-            <a href="https://www.facebook.com/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
-              <FiFacebook />
+            <a href="https://www.linkedin.com/ihr_benutzername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <FiLinkedin />
             </a>
             <a href="mailto:ihre.email@beispiel.com" aria-label="Email" title="Email">
               <FiMail />

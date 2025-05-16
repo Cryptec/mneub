@@ -1,5 +1,7 @@
+import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { FiInstagram, FiLinkedin, FiMail } from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,15 +15,15 @@ const Footer = () => {
           </div>
           
           <div className="footer-center">
-            <div className="social-links">
-              <a href="https://github.com/ihr-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <i className="fab fa-github"></i>
+            <div className="social-links" style={{ marginTop: 0 }}>
+              <a href="https://github.com/martin-neubauer" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-link">
+                <FiInstagram />
               </a>
-              <a href="https://linkedin.com/in/ihr-profil" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i className="fab fa-linkedin-in"></i>
+              <a href="https://linkedin.com/in/martin-neubauer" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-link">
+                <FiLinkedin />
               </a>
-              <a href="https://twitter.com/ihr-username" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
+              <a href="mailto:martin.neubauer@example.com" aria-label="Email" className="social-link">
+                <FiMail />
               </a>
             </div>
           </div>
