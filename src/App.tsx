@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import Impressum from './components/Impressum';
+import Datenschutz from './components/Datenschutz';
 import './App.css';
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
             </main>
           } />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
         </Routes>
         <Footer />
       </div>
